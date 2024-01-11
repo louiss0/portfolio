@@ -1,7 +1,8 @@
 import { defineConfig } from 'astro/config';
 import unocss from '@unocss/astro';
-import markdoc from '@astrojs/markdoc';
 import vue from '@astrojs/vue';
+
+import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
@@ -10,11 +11,9 @@ export default defineConfig({
       exclude: ["astro:content"]
     }
   },
-  integrations: [
-    unocss({
-      injectReset: true,
-    }),
-    vue({ jsx: true }),
-    markdoc(),
-  ],
+  integrations: [unocss({
+    injectReset: true
+  }), vue({
+    jsx: true
+  }), icon()]
 });

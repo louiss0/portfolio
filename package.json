@@ -1,0 +1,21 @@
+{
+	"devDependencies": {
+		"@astrojs/vue": "^4.0.8",
+		"@fontsource/lato": "^5.0.18",
+		"@fontsource/raleway": "^5.0.16",
+		"@unocss/astro": "^0.58.3",
+		"@unocss/reset": "^0.58.3",
+		"@unocss/transformer-variant-group": "^0.58.3",
+		"astro": "^4.1.2",
+		"eslint": "^8.56.0",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-vue": "^9.20.0",
+		"typescript": "^5.3.3",
+		"vite": "^5.0.11",
+		"vite-plugin-eslint": "^1.8.1",
+		"vue-tsc": "^1.8.27"
+	},
+	"dependencies": {
+		"astro-icon": "^1.0.2"
+	}
+}

@@ -1,0 +1,9 @@
+{
+  "root": true,
+  "ignorePatterns": [
+    "**/*"
+  ],
+  "plugins": [
+    "eslint-plugin-vue/vue3-strongly-recommended"
+  ]
+}
