@@ -43,9 +43,6 @@ devDependencies:
   '@iconify-json/mdi':
     specifier: ^1.1.64
     version: 1.1.64
-  '@iconify-json/vscode-icons':
-    specifier: ^1.1.32
-    version: 1.1.32
   '@unocss/astro':
     specifier: ^0.58.3
     version: 0.58.3(vite@5.0.11)
@@ -750,12 +747,6 @@ packages:
 
   /@iconify-json/mdi@1.1.64:
     resolution: {integrity: sha512-zGeo5TjhNFAY6FmSDBLAzDO811t77r6v/mDi7CAL9w5eXqKez6bIjk8R9AL/RHIeq44ALP4Ozr4lMqFTkHr7ug==}
-    dependencies:
-      '@iconify/types': 2.0.0
-    dev: true
-
-  /@iconify-json/vscode-icons@1.1.32:
-    resolution: {integrity: sha512-OovgP4Z89gQoX/Ipl2dyjD1ae59XipzKijNTRD8of+NLaJexgk+jVR/soxjCnwGyvHZexiUVSI8gQtuxD4/poQ==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true

@@ -17,7 +17,6 @@
 		"@iconify-json/fa": "^1.1.8",
 		"@iconify-json/logos": "^1.1.42",
 		"@iconify-json/mdi": "^1.1.64",
-		"@iconify-json/vscode-icons": "^1.1.32",
 		"@unocss/astro": "^0.58.3",
 		"@unocss/reset": "^0.58.3",
 		"@unocss/transformer-variant-group": "^0.58.3",
