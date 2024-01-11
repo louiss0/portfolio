@@ -16,7 +16,7 @@ export interface Props {
 const { revealedFrameworks } = Astro.props;
 ---
 
-<div data-element="icon-container" class="relative w-22 h-22">
+<div data-element="icon-container" class="relative text-22 h-22">
   <!-- Screen reader text  -->
 
   <div class="sr-only">Astro Icon Circle</div>
@@ -30,7 +30,7 @@ const { revealedFrameworks } = Astro.props;
     {
       revealedFrameworks.includes('react') && (
         <div class="transform transition-transform duration-200 ease-in hover:scale-125">
-          <Icon name="logos:react" class="w-8" />
+          <Icon name="logos:react" class="text-8" />
         </div>
       )
     }
@@ -43,7 +43,7 @@ const { revealedFrameworks } = Astro.props;
     {
       revealedFrameworks.includes('angular') && (
         <div class="transform transition-transform duration-200 ease-in hover:scale-125">
-          <Icon name="logos:angular-icon" class="w-8" />
+          <Icon name="logos:angular-icon" class="text-8" />
         </div>
       )
     }
@@ -56,7 +56,7 @@ const { revealedFrameworks } = Astro.props;
     {
       revealedFrameworks.includes('vue') && (
         <div class="transform transition-transform duration-200 ease-in hover:scale-125">
-          <Icon name="logos:vue" class="w-8" />
+          <Icon name="logos:vue" class="text-8" />
         </div>
       )
     }
@@ -69,7 +69,7 @@ const { revealedFrameworks } = Astro.props;
     {
       revealedFrameworks.includes('svelte') && (
         <div class="transform transition-transform duration-200 ease-in hover:scale-125">
-          <Icon name="logos:svelte-icon" class="w-8" />
+          <Icon name="logos:svelte-icon" class="text-8" />
         </div>
       )
     }
@@ -82,7 +82,7 @@ const { revealedFrameworks } = Astro.props;
     {
       revealedFrameworks.includes('solid') && (
         <div class="transform transition-transform duration-200 ease-in hover:scale-125">
-          <Icon name="logos:solidjs-icon" class="w-8" />
+          <Icon name="logos:solidjs-icon" class="text-8" />
         </div>
       )
     }
@@ -97,7 +97,7 @@ const { revealedFrameworks } = Astro.props;
     >
       <div data-circle-box class="rounded-full bg-purple-700">
         <div data-padding-box class="p-4">
-          <Icon name="vscode-icons:file-type-astro" class="w-full h-full" />
+          <Icon name="vscode-icons:file-type-astro" class="text-full h-full" />
         </div>
       </div>
     </div>
