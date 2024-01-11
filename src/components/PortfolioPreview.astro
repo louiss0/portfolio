@@ -1,0 +1,22 @@
+---
+import type { Project } from "../types";
+
+interface Props {
+  url: `/${string}`;
+  project: Project;
+}
+
+const { project, url } = Astro.props;
+---
+
+<div class="card">
+  <div class="titleCard" style={`background-image:url(${project.image.src})`}>
+    <div class="title">{project.title}</div>
+  </div>
+  <div class="descCard">
+    <p class="desc">{project.description}</p>
+    <a class="link" href={url}>
+      <span class="linkInner">View</span>
+    </a>
+  </div>
+</div>

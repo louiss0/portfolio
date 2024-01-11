@@ -1,0 +1,92 @@
+---
+import { getCollectionPaths } from '@forastro/utilities';
+import {
+  LocaleTime,
+  Center,
+  Container,
+  Heading,
+  TwilightFlipSwitch,
+} from '@personal-projects/internal';
+import Default from '../../layouts/Default.astro';
+import { SITE_TITLE } from 'apps/portfolio/src/constants';
+import type { CollectionEntry, CollectionKey } from 'astro:content';
+
+type EntryIsNotADraftWithPubDate<T extends CollectionKey> = Omit<
+  CollectionEntry<T>,
+  'data'
+> & {
+  data: Omit<CollectionEntry<T>['data'], 'draft' | 'pubDate'> & {
+    draft?: never;
+    pubDate: string;
+  };
+};
+
+export const getStaticPaths = async () =>
+  await getCollectionPaths(
+    'project',
+    'slug',
+    (entry) => typeof entry.data.pubDate === 'string',
+  );
+
+const { data, render } =
+  Astro.props as EntryIsNotADraftWithPubDate<CollectionKey>;
+
+const { title, description, pubDate, stack } = data;
+
+const { Content } = await render();
+---
+
+<Default title={`${SITE_TITLE} | ${title}`} description={description}>
+  <nav class="px-9 py-3 text">
+    <Container widthClass={'w-8/12'}>
+      <div class="flex justify-between items-center">
+        <div class="px-3 py-1">
+          <TwilightFlipSwitch
+            client:load
+            transition:name="twilight-flip-switch"
+          />
+        </div>
+        <a href="/">
+          <div class="px-3 py-1">Go Home</div>
+        </a>
+      </div>
+    </Container>
+  </nav>
+
+  <main class="grid gap-8">
+    <Center>
+      <Heading level={1} id={title.toLowerCase().split(' ').join('-')}>
+        {title}
+      </Heading>
+    </Center>
+    <Container>
+      <Center>
+        <article
+          class:list={[
+            'grid',
+            'py-2 px-6',
+            'prose prose-slate dark:prose-invert',
+            '[&>h2]:text-4xl [&>h3]:text-3xl [&>h4]:text-2xl ',
+          ]}
+        >
+          <Content />
+        </article>
+      </Center>
+    </Container>
+  </main>
+
+  <footer class="py-7 px-24">
+    <Center gapClass={'gap-2'}>
+      <div class="flex gap-2">
+        <div class="font-bold">Stack:</div>
+        {stack}
+      </div>
+      <div class="flex items-center gap-4">
+        <div class="text-lg font-bold">Published At:</div>
+        <div class="text-sm">
+          <LocaleTime dateString={pubDate} />
+        </div>
+      </div>
+    </Center>
+  </footer>
+</Default>

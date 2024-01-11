@@ -1,0 +1,33 @@
+---
+import Nav from 'apps/portfolio/src/components/Nav.astro';
+import type { LayoutProps } from '../types';
+import Default from './Default.astro';
+
+type Props = LayoutProps;
+
+const { slots } = Astro;
+
+const header = slots.has('header')
+  ? `${await slots.render('header')} `
+  : ` <p> You must have a header if you want to use this layout</p>`;
+
+const footer = slots.has('footer')
+  ? `${await slots.render('footer')}`
+  : ` <p>You must have a footer if you want to use this layout</p>`;
+
+const { title, description } = Astro.props;
+---
+
+<Default {...{ title, description }}>
+  <slot name="head" slot="head" />
+  <Nav />
+  <header class="px-8 py-4">
+    <Fragment set:html={header} />
+  </header>
+  <main class="py-3 px-6">
+    <slot />
+  </main>
+  <footer class="px-8 py-4">
+    <Fragment set:html={footer} />
+  </footer>
+</Default>

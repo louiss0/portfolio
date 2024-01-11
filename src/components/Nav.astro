@@ -1,0 +1,80 @@
+---
+import { iterate, useTemplaterAndProjector } from '@forastro/utilities';
+import { Center, TwilightFlipSwitch } from '@personal-projects/internal';
+
+const links = ['about', 'projects', 'contact'];
+
+const linkTextAndHrefMap = Object.freeze(
+  links.map((link) => ({
+    href: `#${link}`,
+    text: link,
+  })),
+);
+
+const [NavLinkTemplate, ProjectNavLink] =
+  useTemplaterAndProjector<(typeof linkTextAndHrefMap)[0]>();
+
+const [NavContentXs, ProjectNavContentXs] = useTemplaterAndProjector();
+
+const [NavContentSm, ProjectNavContentSm] = useTemplaterAndProjector();
+---
+
+<NavLinkTemplate>
+  {
+    ({ href, text }) => (
+      <a
+        href={href}
+        data-element="nav-link"
+        class:list={[
+          '[&:is(:hover,:focus)]:outline-current [&:is(:hover,:focus)]:outline-2 [&:is(:hover,:focus)]:outline-auto',
+          'transition-opacity duration-150 ease-in',
+          'py-2 px-6 block',
+          'capitalize ',
+        ]}
+      >
+        <Center>{text}</Center>
+      </a>
+    )
+  }
+</NavLinkTemplate>
+
+<NavContentXs>
+  <div data-content class="block sm:hidden">
+    <div data-element="nav-links" class="grid">
+      <TwilightFlipSwitch client:idle transition:name="twilight-flip-switch" />
+      {
+        iterate(linkTextAndHrefMap, (value) => (
+          <div class="text-2xl">
+            <ProjectNavLink {...value} />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</NavContentXs>
+
+<NavContentSm>
+  <div class="hidden sm:block">
+    <div data-content class="container md:w-4/5 mx-auto">
+      <div class="flex justify-between items-center relative">
+        <TwilightFlipSwitch
+          client:idle
+          transition:name="twilight-flip-switch"
+        />
+
+        <div id="nav-links" class="flex gap-2">
+          {
+            iterate(linkTextAndHrefMap, (value) => (
+              <ProjectNavLink {...value} />
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</NavContentSm>
+
+<nav id="main-navbar" class="sm:py-3 sm:px-9">
+  <ProjectNavContentSm />
+  <ProjectNavContentXs />
+</nav>

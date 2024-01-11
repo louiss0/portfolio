@@ -1,0 +1,66 @@
+---
+import { Icon } from 'astro-icon';
+
+type Props = {
+  navbarId: string;
+};
+
+const { navbarId } = Astro.props;
+---
+
+<div position-wrapper class="fixed bottom-8 right-8">
+  <button
+    id="floating-button"
+    class="group hidden"
+    aria-label="Go to top of screen"
+  >
+    <div
+      class="transition-transform duration-150 ease-in group-hover:scale-105 group-focus:scale-105"
+    >
+      <Icon name="ic:round-arrow-circle-up" class="w-8 md:w-12 xl:w-16" />
+    </div>
+  </button>
+</div>
+
+<script define:vars={{ navbarId }}>
+  const floatingButton = document.getElementById('floating-button');
+  const navbar = document.body.querySelector(`nav[id="${navbarId}"]`);
+  const classUsedToControlFloatingButtonApperance = 'hidden';
+
+  if (floatingButton && navbar) {
+    const navbarObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            if (
+              floatingButton.classList.contains(
+                classUsedToControlFloatingButtonApperance
+              )
+            ) {
+              floatingButton.classList.remove(
+                classUsedToControlFloatingButtonApperance
+              );
+            }
+          } else {
+            floatingButton.classList.add(
+              classUsedToControlFloatingButtonApperance
+            );
+          }
+        });
+      },
+      {
+        threshold: 0.25,
+      }
+    );
+
+    navbarObserver.observe(navbar);
+
+    floatingButton.addEventListener('click', () => {
+      globalThis.scrollTo(0, 0);
+    });
+  } else {
+    throw Error(
+      `The navbar with the id of ${navbarId} is missing please add it to the navbar that you're using for this page`
+    );
+  }
+</script>

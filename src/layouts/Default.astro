@@ -1,0 +1,50 @@
+---
+import MainHead from '../components/MainHead.astro';
+import { ViewTransitions } from 'astro:transitions';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<html lang="en" class="scroll-smooth">
+  <head>
+    <MainHead {...{title, description}} />
+      <slot name="head" />
+     <ViewTransitions slot="head" />
+    <style is:global>
+      :root {
+        --step--2: clamp(0.69rem, calc(0.58rem + 0.48vw), 0.96rem);
+        --step--1: clamp(0.78rem, calc(0.6rem + 0.75vw), 1.2rem);
+        --step-0: clamp(0.88rem, calc(0.62rem + 1.1vw), 1.5rem);
+        --step-1: clamp(0.98rem, calc(0.62rem + 1.57vw), 1.88rem);
+        --step-2: clamp(1.11rem, calc(0.6rem + 2.19vw), 2.34rem);
+        --step-3: clamp(1.25rem, calc(0.55rem + 2.98vw), 2.93rem);
+        --step-4: clamp(1.4rem, calc(0.47rem + 4vw), 3.66rem);
+        --step-5: clamp(1.58rem, calc(0.33rem + 5.3vw), 4.58rem);
+
+        --heading-font: 'Raleway', sans-serif;
+        --body-font: 'Lato', sans-serif;
+      }
+    </style>
+  </head>
+  <body
+    
+    class:list={[
+      "text-[--step-0] font-[--body-font]",
+      'min-h-screen',
+      'grid grid-rows-[auto_1fr_auto]',
+      'text-slate-900 bg-slate-50',
+      'dark:(bg-slate-900 text-slate-50)',
+      'all:selection:(bg-slate-900 text-slate-50)',
+      'dark:all:selection:(bg-slate-50 text-slate-950)',
+    ]}
+    transition:name="body"
+    transition:animate="slide"
+  >
+    <slot />
+  </body>
+</html>

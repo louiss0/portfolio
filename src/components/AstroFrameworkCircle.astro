@@ -1,0 +1,105 @@
+---
+import { Icon } from 'astro-icon';
+
+const topFiveFrameworks = [
+  'react',
+  'vue',
+  'angular',
+  'svelte',
+  'solid',
+] as const;
+
+export interface Props {
+  revealedFrameworks: Array<(typeof topFiveFrameworks)[number]>;
+}
+
+const { revealedFrameworks } = Astro.props;
+---
+
+<div data-element="icon-container" class="relative w-22 h-22">
+  <!-- Screen reader text  -->
+
+  <div class="sr-only">Astro Icon Circle</div>
+
+  <!-- Icons area -->
+
+  <div
+    data-top-icon
+    class="absolute z-20 -top-3 left-1/2 transform -translate-x-1/2"
+  >
+    {
+      revealedFrameworks.includes('react') && (
+        <div class="transform transition-transform duration-200 ease-in hover:scale-125">
+          <Icon name="logos:react" class="w-8" />
+        </div>
+      )
+    }
+  </div>
+
+  <div
+    data-top-right-icon
+    class="absolute z-20 top-1/4 -right-3 transform -translate-y-1/2"
+  >
+    {
+      revealedFrameworks.includes('angular') && (
+        <div class="transform transition-transform duration-200 ease-in hover:scale-125">
+          <Icon name="logos:angular-icon" class="w-8" />
+        </div>
+      )
+    }
+  </div>
+
+  <div
+    data-top-left-icon
+    class="absolute z-20 top-1/4 -left-3 transform -translate-y-1/2"
+  >
+    {
+      revealedFrameworks.includes('vue') && (
+        <div class="transform transition-transform duration-200 ease-in hover:scale-125">
+          <Icon name="logos:vue" class="w-8" />
+        </div>
+      )
+    }
+  </div>
+
+  <div
+    data-bottom-left-icon
+    class="absolute z-20 bottom-1/4 -left-3 transform translate-y-1/2"
+  >
+    {
+      revealedFrameworks.includes('svelte') && (
+        <div class="transform transition-transform duration-200 ease-in hover:scale-125">
+          <Icon name="logos:svelte-icon" class="w-8" />
+        </div>
+      )
+    }
+  </div>
+
+  <div
+    data-bottom-right-icon
+    class="absolute z-20 bottom-1/4 -right-3 transform translate-y-1/2"
+  >
+    {
+      revealedFrameworks.includes('solid') && (
+        <div class="transform transition-transform duration-200 ease-in hover:scale-125">
+          <Icon name="logos:solidjs-icon" class="w-8" />
+        </div>
+      )
+    }
+  </div>
+
+  <!-- Astro Icon area -->
+
+  <div data-positioning-box class="absolute z-10">
+    <div
+      data-transition-box
+      class="transition-opacity duration-300 ease-in hover:opacity-80"
+    >
+      <div data-circle-box class="rounded-full bg-purple-700">
+        <div data-padding-box class="p-4">
+          <Icon name="vscode-icons:file-type-astro" class="w-full h-full" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

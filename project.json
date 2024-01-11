@@ -1,0 +1,41 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "portfolio",
+  "projectType": "application",
+  "sourceRoot": "apps/portfolio/src",
+  "tags": [
+    "astro:portfolio"
+  ],
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec astro --root apps/portfolio build"
+      }
+    },
+    "add": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec astro --root apps/portfolio add"
+      }
+    },
+    "info": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec astro --root apps/portfolio info"
+      }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec astro --root apps/portfolio check"
+      }
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec astro --root apps/portfolio dev"
+      }
+    }
+  }
+}
