@@ -1,6 +1,6 @@
 import { z, defineCollection, } from "astro:content"
 import { projectTypes, Stacks } from "../types"
-import { titleAndDescriptionSchema, draftAndPubDateSchema } from '@personal-projects/internal'
+import { titleAndDescriptionSchema, draftAndPubDateSchema } from '../schemas'
 
 
 

@@ -1,14 +1,5 @@
 declare module 'astro:content' {
 	interface Render {
-		'.mdoc': Promise<{
-			Content(props: Record<string, any>): import('astro').MarkdownInstance<{}>['Content'];
-			headings: import('astro').MarkdownHeading[];
-		}>;
-	}
-}
-
-declare module 'astro:content' {
-	interface Render {
 		'.md': Promise<{
 			Content: import('astro').MarkdownInstance<{}>['Content'];
 			headings: import('astro').MarkdownHeading[];
@@ -164,11 +155,11 @@ declare module 'astro:content' {
 			? {
 					collection: C;
 					slug: ValidContentEntrySlug<C>;
-			  }
+				}
 			: {
 					collection: C;
 					id: keyof DataEntryMap[C];
-			  }
+				}
 	>;
 	// Allow generic `string` to avoid excessive type errors in the config
 	// if `dev` is not running to update as you edit.
@@ -189,7 +180,7 @@ declare module 'astro:content' {
   slug: "vue-todo-list";
   body: string;
   collection: "project";
-  data: InferEntrySchema<"project">
+  data: any
 } & { render(): Render[".md"] };
 };
 
@@ -201,5 +192,5 @@ declare module 'astro:content' {
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
 
-	type ContentConfig = typeof import("../src/content/config");
+	type ContentConfig = never;
 }
