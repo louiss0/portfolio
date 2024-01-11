@@ -90,14 +90,14 @@ const { revealedFrameworks } = Astro.props;
 
   <!-- Astro Icon area -->
 
-  <div data-positioning-box class="absolute z-10">
+  <div data-positioning-box class="absolute z-10 inset-0">
     <div
       data-transition-box
       class="transition-opacity duration-300 ease-in hover:opacity-80"
     >
-      <div data-circle-box class="rounded-full bg-purple-700">
-        <div data-padding-box class="p-4">
-          <Icon name="vscode-icons:file-type-astro" class="text-full h-full" />
+      <div data-circle-box class="p-4 rounded-full w-28 h-28 bg-purple-700">
+        <div data-content class="flex justify-center items-center">
+          <Icon name="logos:astro-icon"  />
         </div>
       </div>
     </div>
