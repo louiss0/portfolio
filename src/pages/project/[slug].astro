@@ -1,42 +1,30 @@
 ---
 import { getCollectionPaths } from '@forastro/utilities';
-import {
-  LocaleTime,
-  Center,
-  Container,
-  Heading,
-  TwilightFlipSwitch,
-} from '@personal-projects/internal';
+import { LocaleTime, Center, Container } from '../../components/base';
 import Default from '../../layouts/Default.astro';
-import { SITE_TITLE } from 'apps/portfolio/src/constants';
-import type { CollectionEntry, CollectionKey } from 'astro:content';
+import { SITE_TITLE } from '../../constants';
+import Heading from '../../components/Heading.astro';
+import TwilightFlipSwitch from '../../components/TwilightFlipSwitch.vue';
 
-type EntryIsNotADraftWithPubDate<T extends CollectionKey> = Omit<
-  CollectionEntry<T>,
-  'data'
-> & {
-  data: Omit<CollectionEntry<T>['data'], 'draft' | 'pubDate'> & {
-    draft?: never;
-    pubDate: string;
-  };
-};
 
-export const getStaticPaths = async () =>
-  await getCollectionPaths(
+export const getStaticPaths = async () => {
+  
+  return  await getCollectionPaths(
     'project',
     'slug',
-    (entry) => typeof entry.data.pubDate === 'string',
   );
 
-const { data, render } =
-  Astro.props as EntryIsNotADraftWithPubDate<CollectionKey>;
+}
 
+// console.log('props', Astro.props);
+
+const { data, render } = Astro.props;
 const { title, description, pubDate, stack } = data;
 
 const { Content } = await render();
 ---
 
-<Default title={`${SITE_TITLE} | ${title}`} description={description}>
+<Default title={`${SITE_TITLE} | ${title}`} {description}>
   <nav class="px-9 py-3 text">
     <Container widthClass={'w-8/12'}>
       <div class="flex justify-between items-center">
