@@ -1,5 +1,5 @@
 ---
-import { Icon } from 'astro-icon';
+import { Icon } from 'astro-icon/components';
 
 type Props = {
   navbarId: string;
@@ -17,7 +17,10 @@ const { navbarId } = Astro.props;
     <div
       class="transition-transform duration-150 ease-in group-hover:scale-105 group-focus:scale-105"
     >
-      <Icon name="ic:round-arrow-circle-up" class="w-8 md:w-12 xl:w-16" />
+      <Icon
+        name="mdi:arrow-up-thin-circle-outline"
+        class="w-8 md:w-12 xl:w-16"
+      />
     </div>
   </button>
 </div>
@@ -34,23 +37,23 @@ const { navbarId } = Astro.props;
           if (!entry.isIntersecting) {
             if (
               floatingButton.classList.contains(
-                classUsedToControlFloatingButtonApperance
+                classUsedToControlFloatingButtonApperance,
               )
             ) {
               floatingButton.classList.remove(
-                classUsedToControlFloatingButtonApperance
+                classUsedToControlFloatingButtonApperance,
               );
             }
           } else {
             floatingButton.classList.add(
-              classUsedToControlFloatingButtonApperance
+              classUsedToControlFloatingButtonApperance,
             );
           }
         });
       },
       {
         threshold: 0.25,
-      }
+      },
     );
 
     navbarObserver.observe(navbar);
@@ -60,7 +63,7 @@ const { navbarId } = Astro.props;
     });
   } else {
     throw Error(
-      `The navbar with the id of ${navbarId} is missing please add it to the navbar that you're using for this page`
+      `The navbar with the id of ${navbarId} is missing please add it to the navbar that you're using for this page`,
     );
   }
 </script>

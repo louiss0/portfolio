@@ -1,32 +1,30 @@
 ---
 // Component Imports
 import HMF from '../layouts/HMF.astro';
-import { Heading, Container, Center,  } from '@personal-projects/internal';
-import { iterate } from '@forastro/utilities';
+import { Container, Center } from '../components/base';
+import { getCollectionDataList, iterate } from '@forastro/utilities';
 import AstroFrameworkCircle from '../components/AstroFrameworkCircle.astro';
 import ProjectFilter from '../components/ProjectFilter.vue';
 import FloatingButton from '../components/FloatingButton.astro';
-import { getCollection } from 'astro:content';
-import { Icon } from 'astro-icon';
-import { SITE_DESCRIPTION, SITE_TITLE } from 'apps/portfolio/src/constants';
-
- 
+import { Icon } from 'astro-icon/components';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../constants';
+import Heading from '../components/Heading.astro';
 
 const socialIconNamesAndLinks = [
-  {   
-      name: 'twitter',
-      icon: 'fa:twitter-square', 
-      link: "https://twitter.com/SheltonLouisX"
+  {
+    name: 'twitter',
+    icon: 'fa:twitter-square',
+    link: 'https://twitter.com/SheltonLouisX',
   },
-  { 
-      name: 'git hub',
-      icon: 'fa:github', 
-      link:"https://github.com/louiss0"
+  {
+    name: 'git hub',
+    icon: 'fa:github',
+    link: 'https://github.com/louiss0',
   },
-  {     
-      name: 'linked in',
-      icon: 'fa:linkedin-square', 
-      link:"https://www.linkedin.com/in/shelton-louis-1163b6142"
+  {
+    name: 'linked in',
+    icon: 'fa:linkedin-square',
+    link: 'https://www.linkedin.com/in/shelton-louis-1163b6142',
   },
 ];
 
@@ -40,20 +38,16 @@ const technologyIconNamesAndColorClasses = [
     iconName: 'mdi:language-typescript',
     colorClass: 'text-blue-400',
   },
-  {  iconName: 'mdi:react', colorClass: 'text-sky-300' },
-  {  iconName: 'mdi:vuejs', colorClass: 'text-green-600' },
-  {  iconName: 'mdi:language-php', colorClass: 'text-violet-500' },
+  { iconName: 'mdi:react', colorClass: 'text-sky-300' },
+  { iconName: 'mdi:vuejs', colorClass: 'text-green-600' },
+  { iconName: 'mdi:language-php', colorClass: 'text-violet-500' },
 ];
 
-
-const projects = (await getCollection('project')).map((entry)=> ({...entry.data, slug:entry.slug}));
-
+const projects = await getCollectionDataList('project');
 ---
 
 <HMF title={SITE_TITLE} description={SITE_DESCRIPTION}>
- 
-  
- <Container slot="header">
+  <Container slot="header">
     <div class="grid gap-12 px-2 py-8">
       <div class="grid gap-8">
         <Heading id="about" level={2}>About Me</Heading>
@@ -65,43 +59,41 @@ const projects = (await getCollection('project')).map((entry)=> ({...entry.data,
         </p>
       </div>
 
-
-      <div  class="grid gap-6 lt-sm:place-items-center">
-        <div class="text-xl md:text-2xl font-bold ">Skills</div>
-        <div class="flex flex-wrap  gap-4 md:gap-6">
+      <div class="grid gap-6 lt-sm:place-items-center">
+        <div class="text-xl md:text-2xl font-bold">Skills</div>
+        <div class="flex flex-wrap gap-4 md:gap-6">
           {
             iterate(
               technologyIconNamesAndColorClasses,
-              ({ iconName, colorClass }) => 
-              <div class="w-12 md:w-20">
-                <Icon name={iconName} class={` ${colorClass}`} />
-              </div>
-              
+              ({ iconName, colorClass }) => (
+                <div class="text-12 md:text-20">
+                  <Icon name={iconName} class={` ${colorClass}`} />
+                </div>
+              ),
             )
           }
         </div>
       </div>
     </div>
   </Container>
- 
 
   <section class="px-4 py-12" aria-labelledby="projects">
     <Container>
       <div class="grid gap-9">
         <Heading level={2} id="projects">My Projects</Heading>
-        <ProjectFilter projects={projects} client:visible />
+        <ProjectFilter {projects} client:visible />
       </div>
     </Container>
   </section>
 
- 
   <section class="px-4 py-12" aria-labelledby="contact">
     <Container>
       <div class="grid gap-8">
         <Heading level={2} id="contact">Contact Info</Heading>
         <p class="text-xl/10 max-w-65ch">
-          If you like my work please contact me  using one of the social links below.
-          I”m always available on weekends and I like to talk about design as well. <br/>
+          If you like my work please contact me using one of the social links
+          below. I”m always available on weekends and I like to talk about
+          design as well. <br />
           My email is louisshelton0@gmail.com.
         </p>
         <Center>
@@ -109,19 +101,14 @@ const projects = (await getCollection('project')).map((entry)=> ({...entry.data,
             class="flex gap-6 flex-wrap justify-center md:gap-24 items-center"
           >
             {
-              iterate(
-              socialIconNamesAndLinks,
-               ({ name, icon, link }) => 
-                <a
-                  href={link}
-                  class="capitalize p-4 "
-                >
+              iterate(socialIconNamesAndLinks, ({ name, icon, link }) => (
+                <a href={link} class="capitalize p-4 ">
                   <div data-content class="grid gap-2 place-items-center">
                     <span class="text-center">{name}</span>
-                    <Icon  name={icon}  class="w-8 h-8"  />
+                    <Icon name={icon} class="text-8" />
                   </div>
                 </a>
-              )
+              ))
             }
           </div>
         </Center>
